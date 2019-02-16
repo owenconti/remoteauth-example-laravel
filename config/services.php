@@ -40,4 +40,12 @@ return [
         ],
     ],
 
+    'remoteauth' => [
+        'client_id' => env('REMOTEAUTH_CLIENT_ID'),
+        'client_secret' => env('REMOTEAUTH_CLIENT_SECRET'),
+        'url' => env('REMOTEAUTH_URL'),
+        'redirect' => config('app.url') . '/login/remoteauth/callback',
+        'scopes' => ''
+    ]
+
 ];
