@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use RemoteAuthPhp\RemoteAuthUser;
+use Carbon\Carbon;
 
-class User extends Authenticatable
+class User extends Authenticatable implements RemoteAuthUser
 {
     use Notifiable;
 
@@ -16,24 +18,35 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function remoteAuthUserId(): string
+    {
+        return $this->remoteauth_user_id;
+    }
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function accessToken(): string
+    {
+        return $this->access_token;
+    }
+
+    public function refreshToken(): string
+    {
+        return $this->refresh_token;
+    }
+
+    public function accessTokenExpiration(): \DateTime
+    {
+        return $this->expires_at;
+    }
+
+    public function handleTokenRefresh(string $userId, string $accessToken, string $refreshToken, int $expiresIn): void
+    {
+        $this->remoteauth_user_id = $userId;
+        $this->access_token = $accessToken;
+        $this->refresh_token = $refreshToken;
+        $this->expires_at = Carbon::now()->addSeconds($expiresIn);
+        $this->save();
+    }
 }
