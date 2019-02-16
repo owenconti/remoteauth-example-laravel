@@ -72,6 +72,8 @@
 
                 <p>All data is pulled from RemoteAuth via the REST API.</p>
 
+                <p>You can view the changes required to get this application setup: <a href="https://github.com/owenconti/remoteauth-example-laravel/pull/1/files">https://github.com/owenconti/remoteauth-example-laravel/pull/1/files</a></p>
+
                 <hr />
 
                 <p>Logged in as {{ $user->email }} | <a href="/logout">Logout</a></p>
