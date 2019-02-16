@@ -66,6 +66,8 @@
 
                 <p>This is an example application setup using <a href="https://laravel.com">Laravel</a>, a PHP framework.</p>
 
+                <p><strong>Note:</strong> You do not need to use Laravel to use RemoteAuth. It is used here as an example implementation.</p>
+
                 <p>This application is meant to demonstrate the functionality of RemoteAuth and the steps required to get started using RemoteAuth for your application.</p>
 
                 <p>If you do not know what RemoteAuth is, check out the <a href="https://docs.remoteauth.com/">RemoteAuth Documentation site</a>.</p>
