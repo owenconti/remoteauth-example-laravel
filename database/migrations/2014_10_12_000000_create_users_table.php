@@ -17,8 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('remoteauth_user_id');
+            $table->text('access_token');
+            $table->text('refresh_token');
+            $table->dateTime('expires_at');
             $table->rememberToken();
             $table->timestamps();
         });

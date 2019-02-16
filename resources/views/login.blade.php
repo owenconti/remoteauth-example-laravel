@@ -40,10 +40,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
             }
@@ -65,46 +61,28 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            <div>
-                <p>This the authenticated side of the example application.</p>
+            <div class="content">
+                <h1>RemoteAuth Example Application</h1>
 
-                <p>Below are the details of the Application Member record that was created when you logged in.</p>
+                <p>This is an example application setup using <a href="https://laravel.com">Laravel</a>, a PHP framework.</p>
 
-                <p>All data is pulled from RemoteAuth via the REST API.</p>
+                <p>This application is meant to demonstrate the functionality of RemoteAuth and the steps required to get started using RemoteAuth for your application.</p>
 
-                <p>You can view the changes required to get this application setup: <a href="https://github.com/owenconti/remoteauth-example-laravel/pull/1/files">https://github.com/owenconti/remoteauth-example-laravel/pull/1/files</a></p>
+                <p>If you do not know what RemoteAuth is, check out the <a href="https://docs.remoteauth.com/">RemoteAuth Documentation site</a>.</p>
 
-                <hr />
+                <p>This example will demonstrate the following:</p>
 
-                <p>Logged in as {{ $user->email }} | <a href="/logout">Logout</a></p>
+                <ol>
+                    <li>Logging into RemoteAuth using the Authorization Code grant</li>
+                    <li>Retrieving the Application Member records for the logged-in user</li>
+                    <li>Displaying the attached roles and permissions for each Application Member</li>
+                </ol>
 
-                <h3>Application Members</h3>
+                <p><strong>Note:</strong> This example application is connected to a demo version of RemoteAuth.</p>
 
-                @foreach($applicationMembers as $member)
-                    <p>Application Member ID: {{ $member['id'] }}</p>
+                <p>To get started, login with RemoteAuth below:</p>
 
-                    <div><strong>Roles:</strong></div>
-                    <ul>
-                        @foreach($member['roles'] as $role)
-                            <li>{{ $role['slug'] }}</li>
-                        @endforeach
-                    </ul>
-
-                    <div><strong>Permissions:</strong></div>
-                    <ul>
-                        @foreach($member['permissions'] as $permission)
-                            <li>{{ $permission['slug'] }}</li>
-                        @endforeach
-                    </ul>
-                @endforeach
-
-                <hr />
-
-                <h3>JSON Response from RemoteAuth</h3>
-
-                <pre>
-<code>{{ json_encode($applicationMembers, JSON_PRETTY_PRINT) }}</code>
-                </pre>
+                <a href="/login/remoteauth">Login with RemoteAuth</a>
             </div>
         </div>
     </body>

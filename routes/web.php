@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'HomeController@show');
 });
